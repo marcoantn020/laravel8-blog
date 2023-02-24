@@ -24,16 +24,16 @@ class LoginController extends Controller
 
         if (Auth::attempt([
             'email' => $validate['email'],
-            'password' => $validate['password'],
-            'is_admin' => 1 ], $request->filled('remember'))) {
+            'password' => $validate['password']
+            ], $request->filled('remember'))) {
             $request->session()->regenerate();
 
             return redirect()->intended('admin');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-            'password' => 'senha incorreta'
+            'email' => 'E-mail/senha incorreta.',
+            'password' => 'E-mail/senha incorreta.'
         ])->onlyInput('email');
     }
 

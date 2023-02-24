@@ -2,24 +2,24 @@
 
 @section('content')
 
-    <h1>Lista de Usuarios</h1>
+    <h2 class="mb-2 mt-4">Lista de Usuarios</h2>
 
-    <ul>
+    <ul class="list-group">
         @foreach($users as $user)
-            <li>
-                <a href="{{ route('user.info', $user->id) }}">{{ $user->fullName }}</a> -
-                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm">Editar</a>
-                <small>Total de posts {{ $user->posts->count() }}</small>
-{{--                <form action="{{ route('user.destroy', $user->id) }}" method="post">--}}
-{{--                    @csrf--}}
-{{--                    @method('delete')--}}
-{{--                    <button type="submit" class="btn btn-danger btn-sm">Deletar</button>--}}
-{{--                </form>--}}
+            <li class="list-group-item d-flex justify-content-between align-items-start" style="height: 70px">
+                <div class="ms-2 me-auto">
+                    @if($user->image !== 'image')
+                    <img src="/img/users/{{ $user->image }}" alt="{{ $user->firstName }}" id="image-user" class="rounded-circle"/>
+                    @else
+                        <img src="/img/images.jpeg" alt="{{ $user->firstName }}" id="image-user" class="rounded-circle"/>
+                    @endif
+                    <a href="{{ route('user.info', $user->id) }}">{{ $user->fullName }}</a>
+                </div>
+                <span class="badge bg-primary rounded-pill"> Total de posts: {{ $user->posts->count() }}</span>
             </li>
-            <br>
         @endforeach
     </ul>
-
+    <br>
     {{ $users->links() }}
 
 @endsection

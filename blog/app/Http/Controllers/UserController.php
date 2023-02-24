@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $users = User::with('posts')
+            ->orderBy('id', 'desc')
+            ->paginate(7);
+        return view('home', [
+            'title' => 'Home',
+            'users' => $users
+        ]);
     }
 
 
@@ -31,6 +32,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $validate = $request->validated();
+        $validate['image'] = UploadImageController::up($request);
         $saved = (new User())->insert($validate);
 
         ($saved) ?
@@ -48,32 +50,4 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(User $user)
-    {
-        return view('user_edit', [
-            'title' => 'Editar usuario',
-            'user' => $user
-        ]);
-    }
-
-    public function update(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required|unique:users,email,'.$user->id
-        ]);
-
-        ($user->update($validated)) ?
-            Session::flash('updated_success', 'Atualizado com sucesso.') :
-            Session::flash('updated_error', 'Erro ao atualizar.');
-
-        return back();
-    }
-
-    public function destroy(User $user)
-    {
-        $user->delete();
-        return back();
-    }
 }

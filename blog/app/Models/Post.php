@@ -9,6 +9,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'title',
+      'content',
+      'user_id',
+      'image',
+       'slug'
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -26,7 +34,9 @@ class Post extends Model
             self::where('title', 'like', "%{$search}%")
                 ->orWhere('content', 'like', "%{$search}%")
                 ->with('author')
-                ->paginate(5) :
-            self::with('author')->paginate();
+                ->paginate(8) :
+            self::with('author')
+                ->orderBy('id', 'desc')
+                ->paginate(8);
     }
 }

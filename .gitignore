@@ -1,0 +1,6 @@
+/blog/node_modules
+/blog/public/hot
+/blog/public/storage
+/blog/storage/*.key
+/blog/vendor
+.env
