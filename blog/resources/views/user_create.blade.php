@@ -39,15 +39,15 @@
             <div class="col-md-8">
                 <label class="form-label" for="lastName"> </label>
                 <input class="form-control" type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" placeholder="Sobrenome" />
-                @if($errors->first('firstName'))
+                @if($errors->first('lastName'))
                     <small class="text-danger">{{ $errors->first('lastName') }}</small>
                 @endif
             </div>
 
             <div class="col-md-8">
                 <label class="form-label" for="email"></label>
-                <input class="form-control" type="text" name="email" id="email" value="{{ old('email') }}" placeholder=" E-mail" />
-                @if($errors->first('firstName'))
+                <input class="form-control" type="text" name="email" id="email" value="{{ old('email') }}" placeholder="E-mail" />
+                @if($errors->first('email'))
                     <small class="text-danger">{{ $errors->first('email') }}</small>
                 @endif
             </div>
@@ -55,7 +55,7 @@
             <div class="col-md-8">
                 <label class="form-label" for="password"> </label>
                 <input class="form-control" type="password" name="password" id="password" value="{{ old('password') }}"  placeholder="Senha" />
-                @if($errors->first('firstName'))
+                @if($errors->first('password'))
                     <small class="text-danger">{{ $errors->first('password') }}</small>
                 @endif
             </div>

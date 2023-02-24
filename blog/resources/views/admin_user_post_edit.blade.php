@@ -11,7 +11,7 @@
     @endif
 
     <div class="col-md-10 offset-md-1 mt-5">
-        <form action="{{ route('edit.update', $post->id) }}"
+        <form action="{{ route('post.update', $post->id) }}"
               enctype="multipart/form-data"
               method="post"
               class="d-flex flex-column align-items-center col-md-8 offset-md-2 mt-5">
@@ -26,9 +26,9 @@
             <div class="col-md-8">
                 <label class="form-label" for="image"></label>
                 @if($post->image !== 'image')
-                    <img src="/img/posts/{{ $post->image }}" alt="{{ $post->title }}" id="image-view" />
+                    <img src="/img/posts/{{ $post->image }}" alt="{{ $post->title }}" class="card-user-admin mb-3" />
                 @else
-                    <img src="/img/images.jpeg" alt="{{ $post->title }}" id="image-view"/>
+                    <img src="/img/images.jpeg" alt="{{ $post->title }}" class="card-user-admin mb-3"/>
                 @endif
                 <input class="form-control"
                        data-bs-toggle="tooltip" data-bs-placement="top" title="image: 225x225"

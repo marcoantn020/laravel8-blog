@@ -16,5 +16,6 @@ class UploadImageController extends Controller
             $requestImage->move(public_path("img/{$path}"), $imageName);
             return $imageName;
         }
+        return 'image';
     }
 }

@@ -36,7 +36,7 @@ class AdminController extends Controller
         $validate = $request->validate([
             'title' => 'required|min:3',
             'content' => 'required|min:100',
-            'image' => 'image|mimes:jpg,png,jpeg|max:2048'
+            'image' => 'mimes:jpg,png,jpeg|max:2048'
         ]);
 
         $validate['image'] = UploadImageController::up($request, 'posts');

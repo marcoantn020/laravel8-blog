@@ -10,7 +10,10 @@
         <x-alert key="danger" :message="session()->get('password_error')" />
     @endif
 
-    <form action="{{ route('password.update',$user->id) }}" method="post" class="d-flex flex-column align-items-center col-md-8 offset-md-2 mt-5">
+    <form action="{{ route('password.update',$user->id) }}"
+          method="post"
+          enctype="multipart/form-data"
+          class="d-flex flex-column align-items-center col-md-8 offset-md-2 mt-5">
         @csrf
         @method('put')
         <div class="col-md-8">

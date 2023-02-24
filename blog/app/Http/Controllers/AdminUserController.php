@@ -31,10 +31,8 @@ class AdminUserController extends Controller
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required|unique:users,email,'.$user->id,
-            'image' => 'image|mimes:jpg,png,jpeg|max:2048'
         ]);
         $validated['image'] = UploadImageController::up($request);
-        dd($validated);
         ($user->update($validated)) ?
             Session::flash('updated_success', 'Atualizado com sucesso.') :
             Session::flash('updated_error', 'Erro ao atualizar.');

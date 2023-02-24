@@ -8,14 +8,17 @@
         <x-alert key="danger" :message="session()->get('updated_error')" />
     @endif
 
-    <form action="{{ route('user.update',$user->id) }}" method="post" class="d-flex flex-column align-items-center col-md-8 offset-md-2 mt-5">
+    <form action="{{ route('user.update',$user->id) }}"
+          enctype="multipart/form-data"
+          method="post"
+          class="d-flex flex-column align-items-center col-md-8 offset-md-2 mt-5">
         @csrf
         @method('put')
         <h1 class="mb-4 mt-3">Atualizar usuario</h1>
 
         <div class="col-md-8">
             @if($user->image !== 'image')
-                <img src="/img/posts/{{ $user->image }}" alt="{{ $user->firstName }}" style="height: 80px"/>
+                <img src="/img/users/{{ $user->image }}" alt="{{ $user->firstName }}" style="height: 80px"/>
             @else
                 <img src="/img/images.jpeg" alt="{{ $user->firstName }}" height="height: 80px"/>
             @endif
